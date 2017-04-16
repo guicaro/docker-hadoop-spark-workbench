@@ -29,18 +29,6 @@ services:
     env_file:
       - ./hadoop.env
 
-  datanode2:
-    image: bde2020/hadoop-datanode:1.0.0
-    hostname: datanode2
-    container_name: datanode2
-    domainname: hadoop
-    networks: 
-      - hadoop
-    volumes:
-      - ./data/datanode2:/hadoop/dfs/data
-    env_file:
-      - ./hadoop.env
-
   spark-master:
     image: earthquakesan/hadoop-spark-master:1.0.0
     hostname: spark-master
@@ -75,32 +63,6 @@ services:
       - SPARK_MASTER_URL=spark://spark-master:7077
     env_file:
       - ./hadoop.env
-
-  spark-notebook:
-    image: earthquakesan/hadoop-spark-notebook:1.0.0
-    hostname: sparknotebook
-    container_name: sparknotebook
-    domainname: hadoop
-    networks:
-      - hadoop
-    environment:
-      - SPARK_NOTEBOOK_MASTER=yarn-client
-    env_file:
-      - ./hadoop.env
-    ports:
-      - "9000:9000"
-
-  hue:
-    image: bde2020/hdfs-filebrowser:3.9
-    hostname: hdfsfb
-    container_name: hdfsfb
-    domainname: hadoop
-    networks:
-      - hadoop
-    environment:
-      - NAMENODE_HOST=namenode
-    ports:
-      - "8088:8088"
 
 networks:
   hadoop:
