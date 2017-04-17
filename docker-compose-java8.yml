@@ -22,7 +22,7 @@ services:
     env_file:
       - ./hadoop-hive.env
   spark-master:
-    image: bde2020/spark-master:2.1.0-hadoop2.8-hive-java8
+    image: bde2020/spark-master:2.1.0-hadoop2.7
     container_name: spark-master
     depends_on:
       - namenode
@@ -33,7 +33,7 @@ services:
     env_file:
       - ./hadoop-hive.env
   spark-worker:
-    image: bde2020/spark-worker:2.1.0-hadoop2.8-hive-java8
+    image: bde2020/spark-worker:2.1.0-hadoop2.7
     container_name: spark-worker
     depends_on:
       - spark-master
